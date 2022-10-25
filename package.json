@@ -2,10 +2,12 @@
   "name": "missmacs",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npm run seed && next start",
+    "seed": "node database/seed.js",
     "lint": "next lint"
   },
   "dependencies": {
