@@ -15,20 +15,19 @@ export async function getStaticProps() {
 }
 
 export default function Home({ products }) {
-  // console.log(products);
   const [category, setCategory] = useState("all");
 
   function filterByCategory() {
     let filtered;
-    category === 'all'? filtered = products: filtered = products.filter((product) => {
-      return product.category === category;
-    });
-    console.log(filtered);
+    category === "all"
+      ? (filtered = products)
+      : (filtered = products.filter((product) => {
+          return product.category === category;
+        }));
 
     return (
       <ul>
         {filtered.map((product, index) => {
-          // console.log(product);
           return (
             <li key={index}>
               <p>{product.name}</p>
@@ -74,12 +73,7 @@ export default function Home({ products }) {
         </button>
       </nav>
       <section>
-        {/* <div>{category === "all" ? <p>Showing all</p> : ""}</div> */}
         <div>{filterByCategory()}</div>
-        {/* <div>{category === "mains" ? <p>Showing mains</p> : ""}</div>
-        <div>{category === "sides" ? <p>Showing sides</p> : ""}</div>
-        <div>{category === "desserts" ? <p>Showing desserts</p> : ""}</div>
-        <div>{category === "drinks" ? <p>Showing drinks</p> : ""}</div> */}
       </section>
     </Layout>
   );
