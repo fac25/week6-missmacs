@@ -18,9 +18,6 @@ export async function getStaticProps() {
   };
 }
 
-<<<<<<< HEAD
-export default function Home({ products}) {
-=======
 export default function Home({ products }) {
   const [category, setCategory] = useState("all");
 
@@ -57,7 +54,6 @@ export default function Home({ products }) {
     setCategory(event.target.id);
   }
 
->>>>>>> main
   return (
     <Layout home>
       <nav>
