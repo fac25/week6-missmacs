@@ -4,10 +4,9 @@ CREATE TABLE IF NOT EXISTS products (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
   src TEXT NOT NULL,
-  price INTEGER NOT NULL,
+  price REAL NOT NULL,
   category TEXT NOT NULL,
   description TEXT NOT NULL,
-  suitable_for TEXT NOT NULL DEFAULT everyone,
   allergens TEXT NOT NULL DEFAULT none
 );
 
