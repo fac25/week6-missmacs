@@ -4,7 +4,6 @@ import Link from "next/link";
 export const siteTitle = "Miss Macs";
 
 export default function Layout({ children, home }) {
-  console.log(children);
   return (
     <div>
       <Head>

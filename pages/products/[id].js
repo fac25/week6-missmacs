@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // Fetch necessary data for the blog post using params.id
   let product = getProductById(params.id);
-  console.log(product);
+
   return {
     props: {
       product,
