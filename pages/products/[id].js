@@ -40,18 +40,18 @@ export default function Product({ product }) {
           alt={product.name}
         />
         <p>{product.name}</p>
-        <p>{product.price}</p>
+        <p>Price: £{product.price}</p>
       </div>
 
       <div>
-        <p>{product.description}</p>
-        <p>{product.allergens}</p>
-        <p>{product.suitable_for}</p>
+        <p>Description: {product.description}</p>
+        <p>Allergens: {product.allergens}</p>
+        <p>Suitable for: {product.suitable_for}</p>
       </div>
 
       <div>
         <label htmlFor="quantity">Quantity</label>
-        <input type="number" id="quantity" />
+        <input type="number" id="quantity" value="1" />
         <button>Add to basket</button>
       </div>
     </div>
