@@ -1,6 +1,6 @@
 import { getProducts, getProductById } from "../../database/model.js";
 import Image from "next/image";
-
+import { useEffect, useState } from "react";
 
 export async function getStaticPaths() {
   let allProducts = getProducts();
@@ -31,14 +31,11 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Product({ product }) {
-  const handleBasket = (e) =>{
-    e.preventDefault()
+  const handleBasket = (e) => {
+    e.preventDefault();
     const number = document.getElementById("quantity").value
-    setBasket([...basket, {numberOfItems: number,
-      product: product
-    }])
-    
-  }
+    localStorage.setItem(JSON.stringify(product.name), number)
+  };
 
   return (
     <div>
@@ -61,8 +58,8 @@ export default function Product({ product }) {
       <div>
         <form>
           <label htmlFor="quantity">Quantity</label>
-          <input type="number" id="quantity" />
-          <button onClick={handleBasket} >Add to basket</button>
+          <input type="number" id="quantity"/>
+          <button onClick={handleBasket}>Add to basket</button>
         </form>
       </div>
     </div>

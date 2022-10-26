@@ -3,7 +3,11 @@ import { useEffect } from "react";
 const Basket = () => {
 
     useEffect(()=>{
-        console.log(localStorage)
+      const keys = Object.keys(localStorage)
+      const value = Object.values(localStorage)
+
+console.log(keys + "" + value)
+        
     },[])
 
   return <></>;

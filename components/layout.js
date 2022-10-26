@@ -16,10 +16,10 @@ export default function Layout({ children, home }) {
           <>
             <Image
               priority
-              src="/images/tiger.jpg"
+              src="/images/logo.jpg"
               height={100}
               width={100}
-              alt=""
+              alt="Miss Macs logo"
             />
           </>
         ) : (
@@ -27,17 +27,26 @@ export default function Layout({ children, home }) {
             <a>
               <Image
                 priority
-                src="/images/tiger.jpg"
+                src="/images/logo.jpg"
                 height={100}
                 width={100}
-                alt=""
+                alt="Miss Macs logo"
               />
             </a>
           </Link>
         )}
       </header>
       <main>{children}</main>
-      <footer>Miss Macs</footer>
+      <footer>
+        © Miss Macs 2022{" "}
+        <Image
+          priority
+          src="/images/logo.jpg"
+          height={20}
+          width={20}
+          alt="Miss Macs logo"
+        />
+      </footer>
     </div>
   );
 }
