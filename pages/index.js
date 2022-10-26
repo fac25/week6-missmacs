@@ -19,7 +19,8 @@ export default function Home({ products }) {
   const [category, setCategory] = useState("all");
 
   function filterByCategory() {
-    let filtered = products.filter((product) => {
+    let filtered;
+    category === 'all'? filtered = products: filtered = products.filter((product) => {
       return product.category === category;
     });
     console.log(filtered);
@@ -28,7 +29,19 @@ export default function Home({ products }) {
       <ul>
         {filtered.map((product, index) => {
           // console.log(product);
-          return <li key={index}>{product.name}</li>;
+          return (
+            <li key={index}>
+              <p>{product.name}</p>
+              <Image
+                src={"/images/" + product.src} // Route of the image file
+                height={144} // Desired size with correct aspect ratio
+                width={144} // Desired size with correct aspect ratio
+                alt={product.name}
+              />
+              <p>{product.price}</p>
+              <button>Add to basket</button>
+            </li>
+          );
         })}
       </ul>
     );
