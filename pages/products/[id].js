@@ -1,6 +1,7 @@
 import { getProducts, getProductById } from "../../database/model.js";
 import Image from "next/image";
 
+
 export async function getStaticPaths() {
   let allProducts = getProducts();
   let allProductids = allProducts.map((product) => {
@@ -30,6 +31,15 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Product({ product }) {
+  const handleBasket = (e) =>{
+    e.preventDefault()
+    const number = document.getElementById("quantity").value
+    setBasket([...basket, {numberOfItems: number,
+      product: product
+    }])
+
+  }
+
   return (
     <div>
       <div>
@@ -46,13 +56,14 @@ export default function Product({ product }) {
       <div>
         <p>Description: {product.description}</p>
         <p>Allergens: {product.allergens}</p>
-        <p>Suitable for: {product.suitable_for}</p>
       </div>
 
       <div>
-        <label htmlFor="quantity">Quantity</label>
-        <input type="number" id="quantity" value="1" />
-        <button>Add to basket</button>
+        <form>
+          <label htmlFor="quantity">Quantity</label>
+          <input type="number" id="quantity" />
+          <button onClick={handleBasket} >Add to basket</button>
+        </form>
       </div>
     </div>
   );

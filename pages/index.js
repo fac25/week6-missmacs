@@ -3,8 +3,12 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { getProducts } from "../database/model.js";
 
+
 export async function getStaticProps() {
   // Fetch necessary data for the blog post using params.id
+
+  
+
   let products = getProducts();
   return {
     props: {
@@ -13,8 +17,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ products }) {
-  console.log(products);
+export default function Home({ products}) {
   return (
     <Layout home>
       {/* Nav bar goes here */}
