@@ -1,4 +1,5 @@
 import { getProducts, getProductById } from "../../database/model.js";
+import Image from "next/image";
 
 export async function getStaticPaths() {
   let allProducts = getProducts();
@@ -31,7 +32,28 @@ export async function getStaticProps({ params }) {
 export default function Product({ product }) {
   return (
     <div>
-      <p>{product.name}</p>
+      <div>
+        <Image
+          src={"/images/" + product.src} // Route of the image file
+          height={144} // Desired size with correct aspect ratio
+          width={144} // Desired size with correct aspect ratio
+          alt={product.name}
+        />
+        <p>{product.name}</p>
+        <p>{product.price}</p>
+      </div>
+
+      <div>
+        <p>{product.description}</p>
+        <p>{product.allergens}</p>
+        <p>{product.suitable_for}</p>
+      </div>
+
+      <div>
+        <label htmlFor="quantity">Quantity</label>
+        <input type="number" id="quantity" />
+        <button>Add to basket</button>
+      </div>
     </div>
   );
 }
