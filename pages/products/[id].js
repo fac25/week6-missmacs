@@ -37,7 +37,7 @@ export default function Product({ product }) {
     setBasket([...basket, {numberOfItems: number,
       product: product
     }])
-
+    
   }
 
   return (
