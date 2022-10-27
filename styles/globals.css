@@ -1,3 +1,51 @@
-body {
-  background-color: aquamarine;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+.main-container {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #FCBF49;
+  border-radius: 10px;
+}
+
+header {
+  display: block;
+}
+header .logo {
+  width: 150px;
+  display: block;
+  margin: 2rem auto;
+  padding: 2rem 0;
+}
+header .logo img {
+  border-radius: 50%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0;
+}
+nav ul {
+  display: flex;
+  gap: 2rem;
+}
+nav ul li {
+  font-size: 20px;
+  cursor: pointer;
+}
+nav a {
+  display: flex;
+  gap: 0.75rem;
+}
+nav a p {
+  font-size: 30px;
+}
+nav a span {
+  font-size: 20px;
 }

@@ -87,19 +87,22 @@ export default function Home({ products }) {
   }
 
   return (
-    <Layout home>
+    <div>
       <nav onClick={handleClick}>
+        <ul>
         {categories.map((category, index) => {
           return (
-            <button key={index} id={category}>
+            <li key={index} id={category}>
               {category.charAt(0).toUpperCase() + category.slice(1)}
-            </button>
+            </li>
           );
         })}
+        </ul>
         <div>
           <Link href={"/basket"}>
             <a>
-              View basket<p>{itemsInBasket}</p>
+              <p> &#x1F6D2;</p>
+              <span>{itemsInBasket}</span>
             </a>
           </Link>
         </div>
@@ -107,6 +110,6 @@ export default function Home({ products }) {
       <section>
         <div>{filterByCategory()}</div>
       </section>
-    </Layout>
+    </div>
   );
 }
