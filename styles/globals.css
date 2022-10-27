@@ -36,8 +36,13 @@ nav ul {
   gap: 2rem;
 }
 nav ul li {
-  font-size: 20px;
+  font-size: 30px;
+  padding: 10px;
+  border-radius: 5px;
   cursor: pointer;
+}
+nav ul li:hover {
+  background-color: #D62828;
 }
 nav a {
   display: flex;
@@ -48,4 +53,50 @@ nav a p {
 }
 nav a span {
   font-size: 20px;
+}
+
+.mainBody {
+  width: 80%;
+  height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.5rem;
+}
+.mainBody .productImageContainer p {
+  font-size: 20px;
+  margin: 0.5rem 0;
+}
+.mainBody .productImageContainer img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.mainBody .priceBasketContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+.mainBody .priceBasketContainer button {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 5px;
+  background-color: #003049;
+  color: #EAE2B7;
+}
+.mainBody .priceBasketContainer button:hover {
+  background-color: #EAE2B7;
+  color: #003049;
+}
+
+.productPage {
+  width: 80%;
+  height: 100vh;
+  margin: 2rem auto;
+  font-size: 20px;
+}
+.productPage .stack > * + * {
+  margin-top: 2rem;
 }

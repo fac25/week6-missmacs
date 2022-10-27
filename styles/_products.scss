@@ -1,0 +1,14 @@
+@use "variables";
+
+.productPage{
+    width: 80%;
+    height: 100vh;
+    margin: 2rem auto;
+    font-size: 20px;
+
+    .stack > * + * {
+        margin-top: 2rem;
+    }
+
+
+}

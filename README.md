@@ -2,33 +2,35 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+
 First, run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<img width="1208" alt="Screenshot 2022-10-27 at 16 46 47" src="https://user-images.githubusercontent.com/90449646/198337945-12a97b98-0fe5-4d1c-b92e-25d5bdb73dce.png">
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## Acceptance criteria
 
-To learn more about Next.js, take a look at the following resources:
+- [X] Server-rendered with Next.js
+- [X] Homepage with product listings
+- [X] Individual product pages, containing quantity/colour/variant pickers
+- [X] Data stored in a SQLite database
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Stretch criteria
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [X] “Add to basket” button on product pages
+- [X] Basket page showing all saved items
+  - [X] Basket contents persisted for future visits
+- [X] Filter products by category
+- [ ] Sort products by price
+- [ ] End-to-end tests
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

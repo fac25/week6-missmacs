@@ -69,19 +69,19 @@ export default function Product({ product }) {
   };
 
   return (
-    <div>
-      <div>
+    <div className="productPage">
+      <div className="stack">
+      <p>{product.name}</p>
         <Image
           src={"/images/" + product.src} // Route of the image file
           height={144} // Desired size with correct aspect ratio
           width={144} // Desired size with correct aspect ratio
           alt={product.name}
         />
-        <p>{product.name}</p>
         <p>Price: £{product.price}</p>
       </div>
 
-      <div>
+      <div className="stack">
         <p>Description: {product.description}</p>
         <p>Allergens: {product.allergens}</p>
       </div>
