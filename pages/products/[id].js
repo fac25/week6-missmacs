@@ -38,7 +38,7 @@ export default function Product({ product }) {
 
     //if product is already in basket update existing entry else push
     //if localBasket includes current product, rewrite that entry, don't add a new one
-    console.log(localBasket);
+  
     if (localBasket.length === 0) {
       localBasket.push({
         id: product.id,
