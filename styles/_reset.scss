@@ -1,0 +1,17 @@
+@use "variables";
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    
+}
+
+.main-container{
+    width: 80%;
+    margin: 0 auto;
+    background-color: variables.$primary;
+    border-radius: 10px;
+}

@@ -11,30 +11,20 @@ export default function Layout({ children, home }) {
         <meta name="description" content="Mac and Cheese takeaway" />
         <meta name="og:title" content={siteTitle} />
       </Head>
+      <div className="main-container">
       <header>
-        {home ? (
-          <>
-            <Image
-              priority
-              src="/images/logo.jpg"
-              height={100}
-              width={100}
-              alt="Miss Macs logo"
-            />
-          </>
-        ) : (
-          <Link href={"/"}>
-            <a>
-              <Image
-                priority
-                src="/images/logo.jpg"
-                height={100}
-                width={100}
-                alt="Miss Macs logo"
-              />
-            </a>
-          </Link>
-        )}
+        <Link href={"/"} >
+          <a className="logo">
+          <Image
+            priority
+            src="/images/logo.jpg"
+            height={150}
+            width={150}
+            alt="Miss Macs logo"
+          
+          />
+          </a>
+        </Link>
       </header>
       <main>{children}</main>
       <footer>
@@ -47,6 +37,7 @@ export default function Layout({ children, home }) {
           alt="Miss Macs logo"
         />
       </footer>
+      </div>
     </div>
   );
 }
