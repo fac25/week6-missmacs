@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { getProducts } from "../database/model.js";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 
 export async function getStaticProps() {
   // Fetch necessary data for the blog post using params.id
@@ -19,19 +18,33 @@ export async function getStaticProps() {
 
 export default function Home({ products }) {
   const [category, setCategory] = useState("all");
+  const [itemsInBasket, setItemsInBasket] = useState(0);
+  const categories = [
+    "all",
+    "starters",
+    "mains",
+    "sides",
+    "desserts",
+    "drinks",
+  ];
 
   function handleBasket(id) {
     let localBasket = JSON.parse(localStorage.getItem("basket") || "[]");
+    
     products.filter((product) => {
       if (product.id === id) {
         localBasket.push({
           name: product.name,
-          price: product.price,
+          quantity: "1",
+          price: Number(product.price.slice(1)),
           image: product.src,
         });
       }
     });
     localStorage.setItem("basket", JSON.stringify(localBasket));
+
+    let local = JSON.parse(localStorage.getItem("basket")).length;
+    setItemsInBasket(local);
   }
 
   function filterByCategory() {
@@ -69,31 +82,27 @@ export default function Home({ products }) {
     );
   }
 
-  function handleClick(event) {
-    setCategory(event.target.id);
+  function handleClick(e) {
+    setCategory(e.target.id);
   }
 
   return (
     <Layout home>
-      <nav>
-        <button id="all" onClick={handleClick}>
-          All
-        </button>
-        <button id="starters" onClick={handleClick}>
-          Starters
-        </button>
-        <button id="mains" onClick={handleClick}>
-          Mains
-        </button>
-        <button id="sides" onClick={handleClick}>
-          Sides
-        </button>
-        <button id="desserts" onClick={handleClick}>
-          Desserts
-        </button>
-        <button id="drinks" onClick={handleClick}>
-          Drinks
-        </button>
+      <nav onClick={handleClick}>
+        {categories.map((category, index) => {
+          return (
+            <button key={index} id={category}>
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </button>
+          );
+        })}
+        <div>
+          <Link href={"/basket"}>
+            <a>
+              View basket<p>{itemsInBasket}</p>
+            </a>
+          </Link>
+        </div>
       </nav>
       <section>
         <div>{filterByCategory()}</div>
