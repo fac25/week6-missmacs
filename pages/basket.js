@@ -9,13 +9,11 @@ const Basket = () => {
 
   useEffect(() => {
     setCurrentBasket(JSON.parse(localStorage.getItem("basket")));
-    console.log(currentBasket);
 
     let basketArray = JSON.parse(localStorage.getItem("basket"));
     let total = basketArray.reduce((acc, current) => {
       return current.price * current.quantity + acc;
     }, 0);
-    console.log(total);
     setTotalCost(total);
 
     // basketArray.forEach((item) => {
