@@ -56,12 +56,12 @@ export default function Home({ products }) {
         }));
 
     return (
-      <ul>
+      <ul className="mainBody">
         {filtered.map((product, index) => {
           return (
             <li key={index}>
               <Link href={"/products/" + product.id}>
-                <div>
+                <div className="productImageContainer">
                   <p>{product.name}</p>
                   <Image
                     src={"/images/" + product.src} // Route of the image file
@@ -71,10 +71,12 @@ export default function Home({ products }) {
                   />
                 </div>
               </Link>
-              <p>{product.price}</p>
-              <button onClick={() => handleBasket(product.id)}>
-                Add to basket
-              </button>
+              <div className="priceBasketContainer">
+                <p>{product.price}</p>
+                <button onClick={() => handleBasket(product.id)}>
+                  Add to basket
+                </button>
+              </div>
             </li>
           );
         })}
@@ -108,7 +110,7 @@ export default function Home({ products }) {
         </div>
       </nav>
       <section>
-        <div>{filterByCategory()}</div>
+        <div >{filterByCategory()}</div>
       </section>
     </div>
   );

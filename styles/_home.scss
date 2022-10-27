@@ -1,3 +1,5 @@
+@use "variables";
+
 nav {
     display: flex;
     justify-content: space-around;
@@ -6,8 +8,13 @@ nav {
         display: flex;
         gap: 2rem;
         li{
-            font-size: 20px;
+            font-size: 30px;
+            padding: 10px;
+            border-radius: 5px;
             cursor: pointer;
+        }
+        li:hover{
+            background-color:  variables.$warning;
         }
     }
     a{
@@ -18,6 +25,55 @@ nav {
         }
         span{
             font-size: 20px;
+        }
+    }
+
+}
+
+.mainBody{
+    width: 80%;
+    height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem,1fr));
+    gap: 1.5rem;
+
+    
+    .productImageContainer{
+        // display: flex;
+        // flex-direction: column;
+        
+        p{
+            font-size: 20px;
+            margin: 0.5rem 0;
+        }
+
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+    }
+
+
+    .priceBasketContainer{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+
+        button{
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 5px;
+            background-color: variables.$secondary;
+            color: variables.$primary-text;
+        }
+        
+        button:hover{
+            background-color: variables.$primary-text;
+            color: variables.$secondary;
         }
     }
 }
