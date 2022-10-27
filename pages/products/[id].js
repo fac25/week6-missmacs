@@ -36,12 +36,33 @@ export default function Product({ product }) {
 
     let localBasket = JSON.parse(localStorage.getItem("basket") || "[]");
 
-    localBasket.push({
-      id: product.id,
-      name: product.name,
-      quantity: document.getElementById("quantity").value,
-      price: product.price,
-      image: product.src,
+    //if product is already in basket update existing entry else push
+    //if localBasket includes current product, rewrite that entry, don't add a new one
+    console.log(localBasket);
+    if (localBasket.length === 0) {
+      localBasket.push({
+        id: product.id,
+        name: product.name,
+        quantity: document.getElementById("quantity").value,
+        price: product.price,
+        image: product.src,
+      });
+    }
+
+    localBasket.forEach((item, index) => {
+      if (item.id === product.id) {
+        localBasket[index].quantity =
+          parseFloat(localBasket[index].quantity) +
+          parseFloat(document.getElementById("quantity").value);
+      } else {
+        localBasket.push({
+          id: product.id,
+          name: product.name,
+          quantity: document.getElementById("quantity").value,
+          price: product.price,
+          image: product.src,
+        });
+      }
     });
 
     localStorage.setItem("basket", JSON.stringify(localBasket));
