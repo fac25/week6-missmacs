@@ -37,6 +37,7 @@ export default function Product({ product }) {
     let localBasket = JSON.parse(localStorage.getItem("basket") || "[]");
 
     localBasket.push({
+      id: product.id,
       name: product.name,
       quantity: document.getElementById("quantity").value,
       price: product.price,
