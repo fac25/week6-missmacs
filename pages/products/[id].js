@@ -33,8 +33,17 @@ export async function getStaticProps({ params }) {
 export default function Product({ product }) {
   const handleBasket = (e) => {
     e.preventDefault();
-    const number = document.getElementById("quantity").value
-    localStorage.setItem(JSON.stringify(product.name), number)
+
+    let localBasket = JSON.parse(localStorage.getItem("basket") || "[]");
+
+    localBasket.push({
+      name: product.name,
+      quantity: document.getElementById("quantity").value,
+      price: product.price,
+      image: product.src,
+    });
+
+    localStorage.setItem("basket", JSON.stringify(localBasket));
   };
 
   return (
@@ -58,7 +67,7 @@ export default function Product({ product }) {
       <div>
         <form>
           <label htmlFor="quantity">Quantity</label>
-          <input type="number" id="quantity"/>
+          <input type="number" id="quantity" />
           <button onClick={handleBasket}>Add to basket</button>
         </form>
       </div>
