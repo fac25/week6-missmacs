@@ -1,14 +1,12 @@
 import Layout from "../components/layout";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { getProducts } from "../database/model.js";
 import { useState } from "react";
 
-
 export async function getStaticProps() {
   // Fetch necessary data for the blog post using params.id
-
-  
 
   let products = getProducts();
   return {
@@ -20,6 +18,20 @@ export async function getStaticProps() {
 
 export default function Home({ products }) {
   const [category, setCategory] = useState("all");
+
+  function handleBasket(id) {
+    let localBasket = JSON.parse(localStorage.getItem("basket") || "[]");
+    products.filter((product) => {
+      if (product.id === id) {
+        localBasket.push({
+          name: product.name,
+          price: product.price,
+          image: product.src,
+        });
+      }
+    });
+    localStorage.setItem("basket", JSON.stringify(localBasket));
+  }
 
   function filterByCategory() {
     let filtered;
@@ -34,15 +46,21 @@ export default function Home({ products }) {
         {filtered.map((product, index) => {
           return (
             <li key={index}>
-              <p>{product.name}</p>
-              <Image
-                src={"/images/" + product.src} // Route of the image file
-                height={144} // Desired size with correct aspect ratio
-                width={144} // Desired size with correct aspect ratio
-                alt={product.name}
-              />
+              <Link href={"/products/" + product.id}>
+                <div>
+                  <p>{product.name}</p>
+                  <Image
+                    src={"/images/" + product.src} // Route of the image file
+                    height={144} // Desired size with correct aspect ratio
+                    width={144} // Desired size with correct aspect ratio
+                    alt={product.name}
+                  />
+                </div>
+              </Link>
               <p>{product.price}</p>
-              <button>Add to basket</button>
+              <button onClick={() => handleBasket(product.id)}>
+                Add to basket
+              </button>
             </li>
           );
         })}
