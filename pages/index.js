@@ -30,7 +30,20 @@ export default function Home({ products }) {
 
   function handleBasket(product) {
     let localBasket = JSON.parse(localStorage.getItem("basket") || "[]");
-        if (localBasket.length === 0) {
+    if (localBasket.length === 0) {
+      localBasket.push({
+        id: product.id,
+        name: product.name,
+        quantity: "1",
+        price: Number(product.price.slice(1)),
+        image: product.src,
+      });
+    } else {
+      localBasket.forEach((item, index) => {
+        if (item.id === product.id) {
+          localBasket[index].quantity =
+            parseFloat(localBasket[index].quantity) + 1;
+        } else {
           localBasket.push({
             id: product.id,
             name: product.name,
@@ -38,29 +51,16 @@ export default function Home({ products }) {
             price: Number(product.price.slice(1)),
             image: product.src,
           });
-        } else {
-          localBasket.forEach((item, index) => {
-            if (item.id === product.id) {
-              localBasket[index].quantity =
-                parseFloat(localBasket[index].quantity) + 1;
-            } else {
-              localBasket.push({
-                id: product.id,
-                name: product.name,
-                quantity: "1",
-                price: Number(product.price.slice(1)),
-                image: product.src,
-              });
-            }
-          });
         }
+      });
+    }
     localStorage.setItem("basket", JSON.stringify(localBasket));
 
     let local = JSON.parse(localStorage.getItem("basket")).length;
     setItemsInBasket(local);
   }
 
-  function filterByCategory() {
+  function ProductsFilteredByCategory() {
     let filtered;
     category === "all"
       ? (filtered = products)
@@ -123,7 +123,9 @@ export default function Home({ products }) {
         </div>
       </nav>
       <section>
-        <div>{filterByCategory()}</div>
+        <div>
+          <ProductsFilteredByCategory />
+        </div>
       </section>
     </div>
   );
