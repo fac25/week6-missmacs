@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getProducts } from "../database/model.js";
 import { useState, useEffect } from "react";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Fetch necessary data for the blog post using params.id
 
   let products = getProducts();
@@ -65,7 +65,7 @@ export default function Home({ products }) {
     setItemsInBasket(local);
   }
 
-  function filterByCategory() {
+  function ProductsFilteredByCategory() {
     let filtered;
     category === "all"
       ? (filtered = products)
@@ -102,13 +102,9 @@ export default function Home({ products }) {
     );
   }
 
-  function handleClick(e) {
-    setCategory(e.target.id);
-  }
-
   return (
     <div>
-      <nav onClick={handleClick}>
+      <nav onClick={(e) => setCategory(e.target.id)}>
         <ul>
           {categories.map((category, index) => {
             return (
@@ -128,7 +124,9 @@ export default function Home({ products }) {
         </div>
       </nav>
       <section>
-        <div>{filterByCategory()}</div>
+        <div>
+          <ProductsFilteredByCategory />
+        </div>
       </section>
     </div>
   );
