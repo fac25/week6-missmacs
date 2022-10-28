@@ -1,9 +1,7 @@
-import Layout from "../components/layout";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
 import { getProducts } from "../database/model.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export async function getStaticProps() {
   // Fetch necessary data for the blog post using params.id
@@ -28,9 +26,29 @@ export default function Home({ products }) {
     "drinks",
   ];
 
+  useEffect(() => {
+    let local = JSON.parse(localStorage.getItem("basket"))
+      ? JSON.parse(localStorage.getItem("basket")).length
+      : 0;
+    setItemsInBasket(local);
+  }, []);
+
   function handleBasket(product) {
     let localBasket = JSON.parse(localStorage.getItem("basket") || "[]");
-        if (localBasket.length === 0) {
+    if (localBasket.length === 0) {
+      localBasket.push({
+        id: product.id,
+        name: product.name,
+        quantity: "1",
+        price: Number(product.price.slice(1)),
+        image: product.src,
+      });
+    } else {
+      localBasket.forEach((item, index) => {
+        if (item.id === product.id) {
+          localBasket[index].quantity =
+            parseFloat(localBasket[index].quantity) + 1;
+        } else {
           localBasket.push({
             id: product.id,
             name: product.name,
@@ -38,22 +56,9 @@ export default function Home({ products }) {
             price: Number(product.price.slice(1)),
             image: product.src,
           });
-        } else {
-          localBasket.forEach((item, index) => {
-            if (item.id === product.id) {
-              localBasket[index].quantity =
-                parseFloat(localBasket[index].quantity) + 1;
-            } else {
-              localBasket.push({
-                id: product.id,
-                name: product.name,
-                quantity: "1",
-                price: Number(product.price.slice(1)),
-                image: product.src,
-              });
-            }
-          });
         }
+      });
+    }
     localStorage.setItem("basket", JSON.stringify(localBasket));
 
     let local = JSON.parse(localStorage.getItem("basket")).length;
