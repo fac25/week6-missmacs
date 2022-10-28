@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 import { getProducts } from "../database/model.js";
 import { useState } from "react";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Fetch necessary data for the blog post using params.id
 
   let products = getProducts();
