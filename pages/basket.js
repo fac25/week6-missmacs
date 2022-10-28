@@ -10,11 +10,11 @@ const Basket = () => {
     const intervalId = setInterval(() => {
       setCurrentBasket(JSON.parse(localStorage.getItem("basket")));
 
-    let basketArray = JSON.parse(localStorage.getItem("basket"));
-    let total = basketArray.reduce((acc, current) => {
-      return current.price * current.quantity + acc;
-    }, 0);
-    setTotalCost(total);
+      let basketArray = JSON.parse(localStorage.getItem("basket"));
+      let total = basketArray.reduce((acc, current) => {
+        return current.price * current.quantity + acc;
+      }, 0);
+      setTotalCost(total);
     }, 10);
 
     return () => {
@@ -45,39 +45,43 @@ const Basket = () => {
   };
 
   return (
-    <div>
+    <div className="basket-container">
       <h1>Your current basket</h1>
       <ul>
         {currentBasket.map((item, index) => {
           return (
             <li key={index} onClick={handleQuantity}>
-              <div>
+              <span className="basket-image">
                 <Image
                   src={"/images/" + item.image} // Route of the image file
-                  height={144} // Desired size with correct aspect ratio
-                  width={144} // Desired size with correct aspect ratio
+                  height={200} // Desired size with correct aspect ratio
+                  width={200} // Desired size with correct aspect ratio
                   alt={item.name}
                 />
-                <p>{item.name}</p>
-                <p>Price: £{item.price}</p>
-                <div>
+              </span>
+              <div className="basket-content">
+                <p className="name">{item.name}</p>
+                <p className="price">Price: £{item.price}</p>
+                <div className="add-minus-button">
                   Quantity:{" "}
-                  <button id="minus" value={item.name}>
+                  <button id="minus" value={item.name} className="minus">
                     &#8722;
                   </button>
                   {item.quantity}
-                  <button id="plus" value={item.name}>
+                  <button id="plus" value={item.name} className="plus">
                     &#43;
                   </button>
                 </div>
-                <p>Cost: £{item.quantity * item.price}</p>
+                <p className="cost">Cost: £{item.quantity * item.price}</p>
               </div>
             </li>
           );
         })}
       </ul>
-      <p>Overall total cost: £{totalCost}</p>
-      <Link href="/confirmation">Checkout</Link>
+      <div className="checkout">
+        <p>Overall total cost: £{totalCost}</p>
+        <Link href="/confirmation">Checkout</Link>
+      </div>
     </div>
   );
 };

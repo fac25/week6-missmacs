@@ -1,14 +1,55 @@
 @use "variables";
 
-.productPage{
-    width: 80%;
-    height: 100vh;
-    margin: 2rem auto;
-    font-size: 20px;
+.product-basket{
+  width: 100%;
+  position: relative;
+  height: 50px;
+  border: 1px solid variables.$primary-text;
+  width: 50%;
+  margin: 10px auto;
+  p{
+    position: absolute;
+    right: 50%;
+    cursor: pointer;
+    font-size: clamp(0.8rem, 1vw + 1rem, 2.5rem);
+  }
+  span{
+    padding-right: 20px;
+    font-size: clamp(0.8rem, 1vw + 0.5rem, 2.5rem);
+  }
+}
 
-    .stack > * + * {
-        margin-top: 2rem;
+.product-page-container {
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid variables.$primary-text;
+  .name {
+    padding: 10px 20px;
+    text-align: center;
+    font-size: clamp(0.8rem, 1vw + 0.8rem, 1.5rem);
+  }
+  .content {
+    padding: 0 20px;
+    .price {
+        padding: 10px 0;
     }
-
-
+    input{
+        color: variables.$primary;
+    }
+    button{
+        margin: 0 30px ;
+        padding: 5px;
+        background-color: variables.$primary;
+        color: variables.$primary-text;
+        cursor: pointer;
+        border: 1px solid;
+        &:hover{
+            color: variables.$secondary;
+            border: none;
+        }
+    }
+    .description, .allergens{
+        padding: 10px 0;
+    }
+  }
 }

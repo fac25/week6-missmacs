@@ -1,79 +1,68 @@
 @use "variables";
 
 nav {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 2rem;
+  ul li {
+    display: inline-block;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: clamp(0.8rem, 1vw + 0.5rem, 1.5rem);
+    &:hover {
+      color: variables.$secondary;
+    }
+  }
+  a {
     display: flex;
-    justify-content: space-around;
-    margin: 2rem 0;
-    ul {
-        display: flex;
-        gap: 2rem;
-        li{
-            font-size: 30px;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        li:hover{
-            background-color:  variables.$warning;
-        }
+    span {
+      padding: 10px 16px;
+      font-size: clamp(0.8rem, 1vw + 0.5rem, 1.5rem);
     }
-    a{
-        display: flex;
-        gap: 0.75rem;
-        p{
-            font-size: 30px;
-        }
-        span{
-            font-size: 20px;
-        }
+    p {
+      font-size: clamp(1rem, 1vw + 1.2rem, 2rem);
     }
-
+  }
 }
 
-.mainBody{
-    width: 80%;
-    height: 100vh;
-    margin: 0 auto;
+.container {
+  width: 80%;
+  margin: 0 auto;
+  ul {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem,1fr));
-    gap: 1.5rem;
-
-    
-    .productImageContainer{
-        // display: flex;
-        // flex-direction: column;
-        
-        p{
-            font-size: 20px;
-            margin: 0.5rem 0;
-        }
-
-        img{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-        }
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    li {
+      border: 1px solid variables.$primary-text;
     }
+  }
+  .product-container{
+    cursor: pointer;
+  }
 
-
-    .priceBasketContainer{
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        align-items: center;
-
-        button{
-            cursor: pointer;
-            padding: 6px;
-            border-radius: 5px;
-            background-color: variables.$secondary;
-            color: variables.$primary-text;
-        }
-        
-        button:hover{
-            background-color: variables.$primary-text;
+  .price-container{
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    button{
+        margin: 0 20px ;
+        padding: 5px;
+        background-color: variables.$primary;
+        color: variables.$primary-text;
+        cursor: pointer;
+        border: 1px solid;
+        &:hover{
             color: variables.$secondary;
+            border: none;
         }
     }
+    p{
+        margin: 0 20px;
+        padding: 5px;
+    }
+  }
+
+  .name{
+    padding:10px;
+  }
 }

@@ -74,26 +74,26 @@ export default function Home({ products }) {
         }));
 
     return (
-      <ul className="mainBody">
+      <ul>
         {filtered.map((product, index) => {
           return (
             <li key={index}>
               <Link href={"/products/" + product.id}>
-                <div className="productImageContainer">
-                  <p>{product.name}</p>
+                <div className="product-container">
+                  <p className="name">{product.name}</p>
                   <Image
                     src={"/images/" + product.src} // Route of the image file
-                    height={144} // Desired size with correct aspect ratio
-                    width={144} // Desired size with correct aspect ratio
+                    height={280} // Desired size with correct aspect ratio
+                    width={280} // Desired size with correct aspect ratio
                     alt={product.name}
                   />
                 </div>
               </Link>
-              <div className="priceBasketContainer">
-                <p>{product.price}</p>
+              <div className="price-container">
                 <button onClick={() => handleBasket(product)}>
                   Add to basket
                 </button>
+                <p>{product.price}</p>
               </div>
             </li>
           );
@@ -103,7 +103,7 @@ export default function Home({ products }) {
   }
 
   return (
-    <div>
+    <main>
       <nav onClick={(e) => setCategory(e.target.id)}>
         <ul>
           {categories.map((category, index) => {
@@ -117,17 +117,15 @@ export default function Home({ products }) {
         <div>
           <Link href={"/basket"}>
             <a>
-              <p> &#x1F6D2;</p>
               <span>{itemsInBasket}</span>
+              <p> &#x1F6D2;</p>
             </a>
           </Link>
         </div>
       </nav>
-      <section>
-        <div>
-          <ProductsFilteredByCategory />
-        </div>
-      </section>
-    </div>
+      <div className="container">
+        <ProductsFilteredByCategory />
+      </div>
+    </main>
   );
 }

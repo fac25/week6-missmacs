@@ -1,0 +1,14 @@
+.confirmation{
+    width: 80%;
+    margin:  0 auto;
+    h1{
+        text-align: center;
+        padding-bottom: 20px;
+    }
+    p{
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+        font-size: clamp(0.8rem, 1vw + 0.5rem, 2rem);;
+    }
+}

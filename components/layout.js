@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 export const siteTitle = "Miss Macs";
 
-export default function Layout({ children }) {
+export default function Layout({ children, home }) {
   return (
     <div>
       <Head>
@@ -26,14 +26,16 @@ export default function Layout({ children }) {
         </header>
         <main>{children}</main>
         <footer>
-          © Miss Macs 2022{" "}
-          <Image
-            priority
-            src="/images/logo.jpg"
-            height={20}
-            width={20}
-            alt="Miss Macs logo"
-          />
+          <p>Miss Macs &#169; 2022</p>
+          <span>
+            <Image
+              priority
+              src="/images/logo.jpg"
+              height={30}
+              width={30}
+              alt="Miss Macs logo"
+            />
+          </span>
         </footer>
       </div>
     </div>
