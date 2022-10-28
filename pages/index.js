@@ -97,13 +97,9 @@ export default function Home({ products }) {
     );
   }
 
-  function handleClick(e) {
-    setCategory(e.target.id);
-  }
-
   return (
     <div>
-      <nav onClick={handleClick}>
+      <nav onClick={(e) => setCategory(e.target.id)}>
         <ul>
           {categories.map((category, index) => {
             return (
