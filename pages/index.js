@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getProducts } from "../database/model.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Fetch necessary data for the blog post using params.id
 
   let products = getProducts();
@@ -25,6 +25,13 @@ export default function Home({ products }) {
     "desserts",
     "drinks",
   ];
+
+  useEffect(() => {
+    let local = JSON.parse(localStorage.getItem("basket"))
+      ? JSON.parse(localStorage.getItem("basket")).length
+      : 0;
+    setItemsInBasket(local);
+  }, []);
 
   function handleBasket(product) {
     let localBasket = JSON.parse(localStorage.getItem("basket") || "[]");
@@ -58,7 +65,7 @@ export default function Home({ products }) {
     setItemsInBasket(local);
   }
 
-  function filterByCategory() {
+  function ProductsFilteredByCategory() {
     let filtered;
     category === "all"
       ? (filtered = products)
@@ -95,13 +102,9 @@ export default function Home({ products }) {
     );
   }
 
-  function handleClick(e) {
-    setCategory(e.target.id);
-  }
-
   return (
     <main>
-      <nav onClick={handleClick}>
+      <nav onClick={(e) => setCategory(e.target.id)}>
         <ul>
           {categories.map((category, index) => {
             return (
@@ -120,7 +123,9 @@ export default function Home({ products }) {
           </Link>
         </div>
       </nav>
-      <div className="container">{filterByCategory()}</div>
+      <div className="container">
+        <ProductsFilteredByCategory />
+      </div>
     </main>
   );
 }
