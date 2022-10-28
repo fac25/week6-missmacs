@@ -33,11 +33,11 @@ export default function Confirmation() {
   ];
 
   return (
-    <Layout>
+    <div className="confirmation">
       <h1>Thanks for your order!</h1>
-      <h2>
-        {driver} is on their way from {location}. They are {time} minutes away.
-      </h2>
-    </Layout>
+      <p>
+        {driver} your delivery driver is on their way from {location}. They are {time} minutes away.
+      </p>
+    </div>
   );
 }

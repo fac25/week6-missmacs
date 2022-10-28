@@ -4,7 +4,6 @@ import Link from "next/link";
 export const siteTitle = "Miss Macs";
 
 export default function Layout({ children, home }) {
-
   return (
     <div>
       <Head>
@@ -12,31 +11,32 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <div className="main-container">
-      <header>
-        <Link href={"/"} >
-          <a className="logo">
-          <Image
-            priority
-            src="/images/logo.jpg"
-            height={150}
-            width={150}
-            alt="Miss Macs logo"
-          
-          />
-          </a>
-        </Link>
-      </header>
-      <main>{children}</main>
-      <footer>
-        © Miss Macs 2022{" "}
-        <Image
-          priority
-          src="/images/logo.jpg"
-          height={20}
-          width={20}
-          alt="Miss Macs logo"
-        />
-      </footer>
+        <header>
+          <Link href={"/"}>
+            <a className="logo">
+              <Image
+                priority
+                src="/images/logo.jpg"
+                height={150}
+                width={150}
+                alt="Miss Macs logo"
+              />
+            </a>
+          </Link>
+        </header>
+        <main>{children}</main>
+        <footer>
+          <p>Miss Macs &#169; 2022</p>
+          <span>
+            <Image
+              priority
+              src="/images/logo.jpg"
+              height={30}
+              width={30}
+              alt="Miss Macs logo"
+            />
+          </span>
+        </footer>
       </div>
     </div>
   );

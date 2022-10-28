@@ -1,6 +1,6 @@
 import { getProducts, getProductById } from "../../database/model.js";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export async function getStaticPaths() {
   let allProducts = getProducts();
@@ -38,7 +38,7 @@ export default function Product({ product }) {
 
     //if product is already in basket update existing entry else push
     //if localBasket includes current product, rewrite that entry, don't add a new one
-  
+
     if (localBasket.length === 0) {
       localBasket.push({
         id: product.id,
@@ -69,29 +69,33 @@ export default function Product({ product }) {
   };
 
   return (
-    <div className="productPage">
-      <div className="stack">
-      <p>{product.name}</p>
+    <div>
+      <div className="product-basket">
+        <Link href={"/basket"}>
+          <p>
+            <span>View basket </span>
+            &#x1F6D2;
+          </p>
+        </Link>
+      </div>
+      <div className="product-page-container">
+        <p className="name">{product.name}</p>
         <Image
           src={"/images/" + product.src} // Route of the image file
-          height={144} // Desired size with correct aspect ratio
-          width={144} // Desired size with correct aspect ratio
+          height={500} // Desired size with correct aspect ratio
+          width={500} // Desired size with correct aspect ratio
           alt={product.name}
         />
-        <p>Price: £{product.price}</p>
-      </div>
-
-      <div className="stack">
-        <p>Description: {product.description}</p>
-        <p>Allergens: {product.allergens}</p>
-      </div>
-
-      <div>
-        <form>
-          <label htmlFor="quantity">Quantity</label>
-          <input type="number" id="quantity" />
-          <button onClick={handleBasket}>Add to basket</button>
-        </form>
+        <div className="content">
+          <div className="add-basket">
+            <label htmlFor="quantity">Quantity</label>
+            <input type="number" id="quantity" />
+            <button onClick={handleBasket}>Add to basket</button>
+          </div>
+          <p className="price">Price: £{product.price}</p>
+          <p className="description">Description: {product.description}</p>
+          <p className="allergens">Allergens: {product.allergens}</p>
+        </div>
       </div>
     </div>
   );

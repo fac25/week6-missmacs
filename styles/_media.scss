@@ -1,0 +1,8 @@
+@media screen and (max-width: 1000px) {
+  .container {
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
