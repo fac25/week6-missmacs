@@ -83,8 +83,8 @@ export default function Home({ products }) {
                   <p className="name">{product.name}</p>
                   <Image
                     src={"/images/" + product.src} // Route of the image file
-                    height={280} // Desired size with correct aspect ratio
-                    width={280} // Desired size with correct aspect ratio
+                    height={1000} // Desired size with correct aspect ratio
+                    width={1000} // Desired size with correct aspect ratio
                     alt={product.name}
                   />
                 </div>

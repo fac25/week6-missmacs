@@ -54,8 +54,8 @@ const Basket = () => {
               <span className="basket-image">
                 <Image
                   src={"/images/" + item.image} // Route of the image file
-                  height={200} // Desired size with correct aspect ratio
-                  width={200} // Desired size with correct aspect ratio
+                  height={1000} // Desired size with correct aspect ratio
+                  width={1000} // Desired size with correct aspect ratio
                   alt={item.name}
                 />
               </span>
