@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 export const siteTitle = "Miss Macs";
 
-export default function Layout({ children, home }) {
-
+export default function Layout({ children }) {
   return (
     <div>
       <Head>
@@ -12,31 +11,30 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
       </Head>
       <div className="main-container">
-      <header>
-        <Link href={"/"} >
-          <a className="logo">
+        <header>
+          <Link href={"/"}>
+            <a className="logo">
+              <Image
+                priority
+                src="/images/logo.jpg"
+                height={150}
+                width={150}
+                alt="Miss Macs logo"
+              />
+            </a>
+          </Link>
+        </header>
+        <main>{children}</main>
+        <footer>
+          © Miss Macs 2022{" "}
           <Image
             priority
             src="/images/logo.jpg"
-            height={150}
-            width={150}
+            height={20}
+            width={20}
             alt="Miss Macs logo"
-          
           />
-          </a>
-        </Link>
-      </header>
-      <main>{children}</main>
-      <footer>
-        © Miss Macs 2022{" "}
-        <Image
-          priority
-          src="/images/logo.jpg"
-          height={20}
-          width={20}
-          alt="Miss Macs logo"
-        />
-      </footer>
+        </footer>
       </div>
     </div>
   );
