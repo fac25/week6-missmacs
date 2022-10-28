@@ -1,9 +1,7 @@
-import Layout from "../components/layout";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
 import { getProducts } from "../database/model.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export async function getServerSideProps() {
   // Fetch necessary data for the blog post using params.id
@@ -27,6 +25,13 @@ export default function Home({ products }) {
     "desserts",
     "drinks",
   ];
+
+  useEffect(() => {
+    let local = JSON.parse(localStorage.getItem("basket"))
+      ? JSON.parse(localStorage.getItem("basket")).length
+      : 0;
+    setItemsInBasket(local);
+  }, []);
 
   function handleBasket(product) {
     let localBasket = JSON.parse(localStorage.getItem("basket") || "[]");
