@@ -7,35 +7,41 @@ const Basket = () => {
   const [totalCost, setTotalCost] = useState(0);
 
   useEffect(() => {
+    const intervalId = setInterval(() => {
       setCurrentBasket(JSON.parse(localStorage.getItem("basket")));
 
-      let basketArray = JSON.parse(localStorage.getItem("basket"));
-      let total = basketArray.reduce((acc, current) => {
-        return current.price * current.quantity + acc;
-      }, 1000);
-      setTotalCost(total);
+    let basketArray = JSON.parse(localStorage.getItem("basket"));
+    let total = basketArray.reduce((acc, current) => {
+      return current.price * current.quantity + acc;
+    }, 0);
+    setTotalCost(total);
+    }, 10);
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
-
   const handleQuantity = (e) => {
-    let checkBasket = currentBasket
+    let checkBasket = currentBasket;
+
     if (e.target.id === "plus") {
       checkBasket.map((item) => {
         if (e.target.value === item.name) {
           item.quantity = Number(item.quantity) + 1;
-           setCurrentBasket(checkBasket);
         }
       });
     } else if (e.target.id === "minus") {
       checkBasket.map((item) => {
         if (Number(item.quantity) > 0) {
           if (e.target.value === item.name) {
-            checkBasket.quantity = Number(item.quantity) - 1;
-             setCurrentBasket(checkBasket);
+            item.quantity = Number(item.quantity) - 1;
           }
         }
       });
     }
+
+    localStorage.setItem("basket", JSON.stringify(checkBasket));
   };
 
   return (

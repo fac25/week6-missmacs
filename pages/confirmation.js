@@ -9,7 +9,6 @@ export default function Confirmation() {
   useEffect(() => {
     setTime(Math.floor(Math.random() * (59 - 1)) + 1);
     let randomIndex = Math.floor(Math.random() * (4 - 0)) + 0;
-    console.log(randomIndex);
     setDriver(deliveryDrivers[randomIndex].driver);
     setLocation(deliveryDrivers[randomIndex].location);
   }, []);

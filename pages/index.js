@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { getProducts } from "../database/model.js";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export async function getStaticProps() {
   // Fetch necessary data for the blog post using params.id
@@ -28,19 +28,32 @@ export default function Home({ products }) {
     "drinks",
   ];
 
-  function handleBasket(id) {
+  function handleBasket(product) {
     let localBasket = JSON.parse(localStorage.getItem("basket") || "[]");
-    
-    products.filter((product) => {
-      if (product.id === id) {
-        localBasket.push({
-          name: product.name,
-          quantity: "1",
-          price: Number(product.price.slice(1)),
-          image: product.src,
-        });
-      }
-    });
+        if (localBasket.length === 0) {
+          localBasket.push({
+            id: product.id,
+            name: product.name,
+            quantity: "1",
+            price: Number(product.price.slice(1)),
+            image: product.src,
+          });
+        } else {
+          localBasket.forEach((item, index) => {
+            if (item.id === product.id) {
+              localBasket[index].quantity =
+                parseFloat(localBasket[index].quantity) + 1;
+            } else {
+              localBasket.push({
+                id: product.id,
+                name: product.name,
+                quantity: "1",
+                price: Number(product.price.slice(1)),
+                image: product.src,
+              });
+            }
+          });
+        }
     localStorage.setItem("basket", JSON.stringify(localBasket));
 
     let local = JSON.parse(localStorage.getItem("basket")).length;
@@ -73,7 +86,7 @@ export default function Home({ products }) {
               </Link>
               <div className="priceBasketContainer">
                 <p>{product.price}</p>
-                <button onClick={() => handleBasket(product.id)}>
+                <button onClick={() => handleBasket(product)}>
                   Add to basket
                 </button>
               </div>
@@ -92,13 +105,13 @@ export default function Home({ products }) {
     <div>
       <nav onClick={handleClick}>
         <ul>
-        {categories.map((category, index) => {
-          return (
-            <li key={index} id={category}>
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </li>
-          );
-        })}
+          {categories.map((category, index) => {
+            return (
+              <li key={index} id={category}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </li>
+            );
+          })}
         </ul>
         <div>
           <Link href={"/basket"}>
@@ -110,7 +123,7 @@ export default function Home({ products }) {
         </div>
       </nav>
       <section>
-        <div >{filterByCategory()}</div>
+        <div>{filterByCategory()}</div>
       </section>
     </div>
   );
