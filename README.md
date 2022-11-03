@@ -2,13 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Make sure you have Git and Node (v18) installed.
 
-First, run the development server:
+- Clone a copy, cd into it
 
-```bash
-npm install
-npm run dev
-```
+- Run ```npm install``` to install all the dependencies
+
+- Run ```npm run dev``` to start the local dev server
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 <img width="1208" alt="Screenshot 2022-10-27 at 16 46 47" src="https://user-images.githubusercontent.com/90449646/198337945-12a97b98-0fe5-4d1c-b92e-25d5bdb73dce.png">
